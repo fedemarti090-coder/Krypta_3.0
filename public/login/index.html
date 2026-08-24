@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krypta / Login</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="./point_grid/point_grid.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+    <!-- Card Principale Login -->
+    <div class="main-container">
+
+        <!-- Lato Sinistro: Form / Autenticazione -->
+        <section class="login-side">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-vault"></i>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">Krypta</span>
+                    <span class="brand-subtitle">Vault Design</span>
+                </div>
+            </div>
+
+            <section class="login-box" id="left-area">
+                <div class="avatar-container">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+
+                <form id="loginForm">
+                    <div class="input-group">
+                        <i class="fa-regular fa-user input-icon"></i>
+                        <input type="text" id="username" placeholder="USERNAME">
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input type="password" id="password" placeholder="PASSWORD">
+                    </div>
+
+                    <button type="button" class="btn-login" id="btn-login" onclick="action_start()">ACCEDI</button>
+
+                    <div class="form-footer">
+                        <label class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <span class="checkmark"></span>
+                            Ricordami
+                        </label>
+                        <a href="#" class="forgot-pass" id="change-btn" onclick="change()">Nuovo utente? Registrati
+                            QUI</a>
+                    </div>
+                </form>
+            </section>
+
+            <div class="slider-dots" id="dot-area">
+            </div>
+        </section>
+
+        <!-- Lato Destro: Welcome Banner / Navigazione -->
+        <section class="welcome-side">
+            <nav class="hero-nav">
+                <a href="#">NOI</a>
+                <a href="#">ABBONAMENTI</a>
+                <a href="#">CONTATTACI</a>
+                <button class="btn-signin" id="btn-signin" onclick="change()">REGISTRATI</button>
+                <i class="fa-solid fa-bars menu-burger"></i>
+            </nav>
+
+            <div class="welcome-content" id="welcome-content">
+
+                <div id="typing-heading"></div>
+
+                <p>Proteggi e gestisci le tue credenziali in modo sicuro e moderno.</p>
+                <div class="signup-redirect">
+                    Per ulteriori informazioni <a href="#">controlla il sito</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Sfondi Animati / Canvas -->
+    <div id="bg-container" class="bg-container"></div>
+    <div id="dot-field-wrapper"></div>
+
+    <!-- Moduli JavaScript -->
+    <script type="module" src="silk/silk_usage.js"></script>
+    <script type="module" src="point_grid/point_grid_setup.js"></script>
+    <script type="module" src="js/txt_script.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

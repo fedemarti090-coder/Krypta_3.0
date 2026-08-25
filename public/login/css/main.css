@@ -1,4 +1,4 @@
-/* Container Principale dell'Interfaccia */
+
 .main-container {
   width: 90vw;
   max-width: 1200px;
@@ -13,7 +13,7 @@
   user-select: none;
 }
 
-/* --- LATO SINISTRO (LOGIN) --- */
+
 .login-side {
   width: 38%;
   height: 100%;
@@ -26,7 +26,7 @@
   z-index: 2;
 }
 
-/* Brand Header */
+
 .brand {
   display: flex;
   align-items: center;
@@ -63,7 +63,7 @@
   color: #64748b;
 }
 
-/* Login Box & Inputs */
+
 .login-box {
   width: 100%;
   display: flex;
@@ -138,7 +138,7 @@ form {
   box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
 }
 
-/* Pulsanti Form */
+
 .btn-login {
   width: 100%;
   padding: 12px;
@@ -177,7 +177,7 @@ form {
   border-color: #cbd5e1;
 }
 
-/* Form Footer (Ricordami / Password dimenticata) */
+
 .form-footer {
   display: flex;
   justify-content: space-between;
@@ -204,7 +204,7 @@ form {
   text-decoration: underline;
 }
 
-/* Indicatori Slider (Dots) */
+
 .slider-dots {
   display: flex;
   gap: 8px;
@@ -225,21 +225,21 @@ form {
   border-radius: 10px;
 }
 
-/* --- LATO DESTRO (WELCOME BANNER CON VETRO SFUMATO) --- */
+
 .welcome-side {
   width: 62%;
   height: 100%;
 
-  /* Trasparenza pura con riflessi di luce speculare */
+ 
   background: linear-gradient(135deg,
       rgba(255, 255, 255, 0.15) 0%,
       rgba(255, 255, 255, 0.03) 100%);
 
-  /* Rifrazione dello sfondo (effetto sfocatura vetro) */
+ 
   backdrop-filter: blur(10px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
 
-  /* Bordi e ombre interne per la tridimensionalità del vetro */
+ 
   border-left: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow:
     inset 1px 1px 2px rgba(255, 255, 255, 0.35),
@@ -254,7 +254,7 @@ form {
   overflow: hidden;
 }
 
-/* Navigation Bar Destra */
+
 .hero-nav {
   display: flex;
   justify-content: flex-end;
@@ -274,7 +274,7 @@ form {
 
 .hero-nav a:hover {
   color: #ffffff;
-  
+
 }
 
 .btn-signin {
@@ -298,7 +298,7 @@ form {
 }
 
 .btn-signin:active {
-  /* Risposta tattile al click */
+ 
   transform: translateY(0) scale(0.98);
 }
 
@@ -308,7 +308,7 @@ form {
   display: none;
 }
 
-/* Testo di Benvenuto */
+
 .welcome-content {
   max-width: 85%;
   margin-bottom: 2rem;
@@ -343,7 +343,7 @@ form {
   padding-bottom: 2px;
 }
 
-/* --- RESPONSIVENESS (MOBILE & TABLET) --- */
+
 @media (max-width: 900px) {
   body {
     overflow-y: auto;
@@ -381,4 +381,231 @@ form {
   .menu-burger {
     display: block;
   }
+}
+
+
+.btn-login {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+ 
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+
+.btn-login .btn-text {
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(0);
+}
+
+
+.btn-login .btn-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-login .btn-icon-wrapper i {
+  font-size: 1rem;
+  color: #ffffff;
+ 
+  display: none;
+}
+
+
+.btn-login.is-loading {
+  pointer-events: none;
+ 
+  background-color: #d62828;
+}
+
+
+.btn-login.is-loading .btn-text,
+.btn-login.is-success .btn-text,
+.btn-login.is-error .btn-text {
+  transform: translateX(-6px);
+}
+
+
+.btn-login.is-loading .btn-icon-wrapper,
+.btn-login.is-success .btn-icon-wrapper,
+.btn-login.is-error .btn-icon-wrapper {
+  width: 20px;
+  margin-left: 8px;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.btn-login.is-loading .icon-spinner {
+  display: inline-block;
+}
+
+
+.btn-login.is-success {
+  background-color: #10b981;
+ 
+}
+
+.btn-login.is-success .icon-success {
+  display: inline-block;
+  animation: popIn 0.3s ease forwards;
+}
+
+
+.btn-login.is-error {
+  background-color: #ef4444;
+ 
+  animation: shake 0.4s ease;
+}
+
+.btn-login.is-error .icon-error {
+  display: inline-block;
+  animation: popIn 0.3s ease forwards;
+}
+
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  80% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20%,
+  60% {
+    transform: translateX(-4px);
+  }
+
+  40%,
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.8rem;
+  font-weight: 500;
+  min-height: 20px;
+ 
+  margin-bottom: 0.75rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all 0.25s ease;
+}
+
+.error-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.input-group input.input-error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+}
+
+
+.pwd-alert-wrapper {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+ 
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+}
+
+
+.pwd-alert-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.pwd-alert-wrapper:hover .pwd-alert-icon {
+  transform: scale(1.1);
+}
+
+
+.pwd-tooltip {
+  position: absolute;
+  bottom: 130%;
+ 
+  right: -10px;
+  width: 220px;
+  background-color: #ffffff;
+  color: #1e293b;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  padding: 10px 12px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+
+ 
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.pwd-tooltip strong {
+  color: #e63946;
+  display: block;
+  margin-bottom: 2px;
+}
+
+
+.pwd-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 14px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+}
+
+
+.pwd-alert-wrapper:hover .pwd-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+.input-group:has(.pwd-alert-wrapper.is-visible) input {
+  padding-right: 44px;
 }

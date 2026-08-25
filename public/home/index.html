@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krypta / Home</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../login/point_grid/point_grid.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/option.css">
+</head>
+
+<body>
+
+    <div class="main-container">
+
+        <!-- Sidebar Sinistra -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="brand">
+                    <div class="brand-icon">
+                        <i class="fa-solid fa-vault"></i>
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-title">Krypta</span>
+                        <span class="brand-subtitle">Vault Design</span>
+                    </div>
+                </div>
+
+                <hr class="sidebar-divider">
+
+                <!-- Menu Principale -->
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item active" id="home">
+                        <img src="./asset/white/home.png" data-icon="home" alt="Home" class="nav-icon">
+                        <span>Home</span>
+                    </a>
+                    <a href="#" class="nav-item" id="password">
+                        <img src="./asset/white/vault.png" data-icon="vault" alt="Password" class="nav-icon">
+                        <span>Password</span>
+                    </a>
+                    <a href="#" class="nav-item" id="add">
+                        <img src="./asset/white/add.png" data-icon="add" alt="Nuova" class="nav-icon">
+                        <span>Aggiungi</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="./asset/white/favorite.png" data-icon="favorite" alt="Preferiti" class="nav-icon">
+                        <span>Preferiti</span>
+                    </a>
+                    <a href="#" class="nav-item" id="backup">
+                        <img src="./asset/white/backup.png" data-icon="backup" alt="Backup" class="nav-icon">
+                        <span>Backup</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="./asset/white/trash.png" data-icon="trash" alt="Cestino" class="nav-icon">
+                        <span>Cestino</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Sezione Ancorata In Basso -->
+            <div class="sidebar-bottom">
+                <hr class="sidebar-divider">
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item" id="profilo">
+                        <img src="./asset/white/profile.png" data-icon="profile" alt="Profilo" class="nav-icon">
+                        <span>Profilo</span>
+                    </a>
+                    <a href="#" class="nav-item" id="setting">
+                        <img src="./asset/white/settings.png" data-icon="settings" alt="Settings" class="nav-icon">
+                        <span>Impostazioni</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Area Workspace a Destra (Liquid Glass) -->
+        <section class="welcome-side" id="welcome-side">
+            <div class="container-option" id="option-box"></div>
+        </section>
+
+    </div>
+
+    <div id="bg-container" class="bg-container"></div>
+    <div id="dot-field-wrapper"></div>
+
+    <script type="module" src="../login/silk/silk_usage.js"></script>
+    <script type="module" src="../login/point_grid/point_grid_setup.js"></script>
+    <script type="module" src="js/script.js"></script>
+    <script src="js/function.js"></script>
+
+
+</body>
+
+</html>

@@ -51,9 +51,25 @@
                     <div class="input-group">
                         <i class="fa-solid fa-lock input-icon"></i>
                         <input type="password" id="password" placeholder="PASSWORD">
+
+                        <div class="pwd-alert-wrapper" id="pwd-alert">
+                            <img src="./asset/allert.png" alt="Attenzione" class="pwd-alert-icon" draggable="false">
+                            <div class="pwd-tooltip">
+                                <strong>Attenzione!</strong> La password è la chiave del tuo account, non va persa o dimenticata.
+                            </div>
+                        </div>
                     </div>
 
-                    <button type="button" class="btn-login" id="btn-login" onclick="action_start()">ACCEDI</button>
+                    <div id="auth-error-msg" class="error-message"></div>
+
+                    <button type="button" class="btn-login" id="btn-login" onclick="action_start()">
+                        <span class="btn-text">ACCEDI</span>
+                        <span class="btn-icon-wrapper">
+                            <i class="fa-solid fa-spinner fa-spin icon-spinner"></i>
+                            <i class="fa-solid fa-check icon-success"></i>
+                            <i class="fa-solid fa-xmark icon-error"></i>
+                        </span>
+                    </button>
 
                     <div class="form-footer">
                         <label class="remember-me">

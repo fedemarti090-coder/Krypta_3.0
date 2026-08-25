@@ -1,0 +1,1407 @@
+.container-option {
+  background-color: #ffffff;
+  border-radius: 22px;
+  width: 90%;
+  max-height: 90%;
+  margin: auto;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: #1e293b;
+  scrollbar-width: none;
+}
+
+/* 1. Titolo Principale Rosso */
+.component-main-title {
+  color: #e63946;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+/* 2. Paragrafo Informativo */
+.component-info-paragraph {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* 3. Card Show Password */
+.component-password-card {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.component-password-card:hover {
+  opacity: 0.8;
+}
+
+.password-card-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.password-card-name {
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* 4. Riga Divisoria */
+.component-divider {
+  border: none;
+  height: 2px;
+  background-color: rgb(148, 163, 184, 0.5);
+  width: 100%;
+  margin: 1rem 0;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* 5. Casella di Input (Stile Login) */
+.component-input-group {
+  position: relative;
+  width: 100%;
+}
+
+.component-input-group input {
+  width: 100%;
+  padding: 12px 16px 12px 46px;
+  border: 1.5px solid #dadde1;
+  background-color: #f8fafc;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  outline: none;
+  color: #1e293b;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.component-input-group input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.component-input-group input:focus {
+  border-color: #e63946;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.12);
+}
+
+.component-input-group .input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.component-input-group input:focus+.input-icon {
+  color: #e63946;
+}
+
+.component-password-card {
+  width: 100%;
+  background-color: #f0f7ff;
+  /* Azzurrino chiaro */
+  border-radius: 22px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.component-password-card:hover {
+  background-color: #e4f0fe;
+  transform: translateY(-1px);
+}
+
+.password-card-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.password-card-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.password-card-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.password-card-name {
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.password-card-username {
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+
+.password-card-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.password-card-value {
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.password-card-eye {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.password-card-eye:hover {
+  transform: scale(1.15);
+}
+
+/* Container per lo stato vuoto (Centrato orizzontalmente e verticalmente) */
+.component-empty-state {
+  width: 100%;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+/* Link sottolineato cliccabile */
+.empty-state-link {
+  color: #e63946;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.empty-state-link:hover {
+  color: #d62828;
+}
+
+/* Card Container per il Grafico (Centrato totalmente) */
+.component-chart-card {
+  width: 100%;
+  background-color: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Centra orizzontalmente tutto il contenuto */
+  gap: 2.5rem;
+  /* Spazio bilanciato tra grafico e legenda */
+}
+
+/* Grafico SVG a sinistra */
+.chart-container-left {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.donut-segment {
+  transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+}
+
+/* Area Legenda a destra (Centrata verticalmente) */
+.chart-container-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  /* Mantiene i pallini e il testo della legenda ben allineati tra loro */
+  gap: 0.5rem;
+}
+
+.chart-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.dot-danger {
+  background-color: #ef4444;
+}
+
+.dot-warning {
+  background-color: #f59e0b;
+}
+
+.dot-good {
+  background-color: #10b981;
+}
+
+.legend-label {
+  font-size: 0.85rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+.chart-footer {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-top: 0.35rem;
+}
+
+.chart-footer strong {
+  color: #1e293b;
+}
+
+.logoloop {
+  min-height: 50px;
+  width: 100%;
+}
+
+/* Contenitore principale del carosello */
+.logoloop {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  background-color: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 22px;
+
+}
+
+/* Pista delle icone */
+.logoloop__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Lista di icone (UL) */
+.logoloop__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--logoloop-gap, 30px);
+  padding-right: var(--logoloop-gap, 30px);
+}
+
+/* Singolo elemento (LI) */
+.logoloop__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Immagini dei loghi */
+.logoloop__item img {
+  height: var(--logoloop-logoHeight, 35px);
+  width: auto;
+  object-fit: contain;
+  display: block;
+
+}
+
+/* Effetto sfumatura ai bordi (se fadeOut: true) */
+.logoloop--fade {
+  mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%);
+}
+
+/* Effetto zoom al passaggio del mouse (se scaleOnHover: true) */
+.logoloop--scale-hover .logoloop__item img {
+  transition: transform 0.2s ease;
+}
+
+.logoloop--scale-hover .logoloop__item img:hover {
+  transform: scale(1.15);
+}
+
+.logoloop__item img,
+.logoloop__link {
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.input-icon {
+  width: 20px;
+  height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  display: inline-block;
+  object-fit: contain;
+}
+
+/* --- BASE BUTTON --- */
+.btn-login {
+  width: 60%;
+  padding: 12px;
+  margin-left: 20%;
+  background-color: #e63946;
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+
+  /* Flex & Layout interno */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  overflow: hidden;
+
+  /* Transizioni */
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-login:hover {
+  background-color: #d62828;
+  transform: translateY(-1px);
+}
+
+/* --- ELEMENTI INTERNI --- */
+.btn-login .btn-text {
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(0);
+}
+
+.btn-login .btn-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-login .btn-icon-wrapper i {
+  font-size: 1rem;
+  color: #ffffff;
+  display: none;
+}
+
+/* --- STATI DINAMICI (LOADING, SUCCESS, ERROR) --- */
+
+/* Posizionamento testo durante gli stati */
+.btn-login.is-loading .btn-text,
+.btn-login.is-success .btn-text,
+.btn-login.is-error .btn-text {
+  transform: translateX(-6px);
+}
+
+/* Visibilità wrapper icona durante gli stati */
+.btn-login.is-loading .btn-icon-wrapper,
+.btn-login.is-success .btn-icon-wrapper,
+.btn-login.is-error .btn-icon-wrapper {
+  width: 20px;
+  margin-left: 8px;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stato Loading */
+.btn-login.is-loading {
+  pointer-events: none;
+  background-color: #d62828;
+}
+
+.btn-login.is-loading .icon-spinner {
+  display: inline-block;
+}
+
+/* Stato Success */
+.btn-login.is-success {
+  background-color: #10b981;
+}
+
+.btn-login.is-success .icon-success {
+  display: inline-block;
+  animation: popIn 0.3s ease forwards;
+}
+
+/* Stato Error */
+.btn-login.is-error {
+  background-color: #ef4444;
+  animation: shake 0.4s ease;
+}
+
+.btn-login.is-error .icon-error {
+  display: inline-block;
+  animation: popIn 0.3s ease forwards;
+}
+
+/* --- ANIMAZIONI --- */
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  80% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20%,
+  60% {
+    transform: translateX(-4px);
+  }
+
+  40%,
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+/* --- ICON PICKER INTEGRATION --- */
+
+/* Riserva spazio a destra per l'icona select se il picker è presente */
+.component-input-group:has(.picker-trigger-wrapper) input {
+  padding-right: 44px;
+}
+
+.picker-trigger-wrapper {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.picker-trigger-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.picker-trigger-icon:hover {
+  transform: scale(1.15);
+  opacity: 0.85;
+}
+
+/* Dropdown Menu (Stile simile al Tooltip di Login) */
+.brand-picker-dropdown {
+  position: absolute;
+  top: 130%;
+  right: -10px;
+  width: 260px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 12px;
+
+  /* Stato nascosto di default */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 50;
+}
+
+.brand-picker-dropdown.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Freccetta indicatrice top-right */
+.brand-picker-dropdown::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  right: 16px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #ffffff transparent;
+}
+
+/* Input di Ricerca interno al menu */
+.picker-search-container {
+  margin-bottom: 10px;
+}
+
+.picker-search-input {
+  width: 100% !important;
+  padding: 8px 12px !important;
+  font-size: 0.8rem !important;
+  border-radius: 8px !important;
+  background-color: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+.picker-search-input:focus {
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1) !important;
+}
+
+/* Griglia icone (scolabile) */
+.picker-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Scrollbar personalizzata per la griglia */
+.picker-grid::-webkit-scrollbar {
+  width: 4px;
+}
+
+.picker-grid::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+/* Singolo elemento icona nella griglia */
+.picker-grid-item {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: #f1f5f9;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 6px;
+}
+
+.picker-grid-item:hover {
+  background-color: #ffe6e8;
+  transform: scale(1.08);
+}
+
+.picker-grid-item img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.picker-no-results {
+  grid-column: span 4;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  text-align: center;
+  padding: 12px 0;
+}
+
+/* Il contenitore dell'input deve essere relativo per posizionare le icone a destra */
+.component-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.component-input-group input {
+  width: 100%;
+  padding-right: 45px;
+  /* Spazio a destra per non far sovrapporre il testo alle icone */
+}
+
+/* Stili identici sia per il Picker che per il Random Trigger */
+.picker-trigger-wrapper,
+.random-trigger-wrapper {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.picker-trigger-icon,
+.random-trigger-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.picker-trigger-icon:hover,
+.random-trigger-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.component-password-card {
+  width: 100% !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.password-card-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.password-card-favorite {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.password-card-favorite:hover {
+  transform: scale(1.15);
+}
+
+.heart-particle {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background-color: #ff3b30;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  animation: heartBurst 0.45s ease-out forwards;
+}
+
+@keyframes heartBurst {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0.2);
+  }
+}
+
+/* Contenitore a due colonne affiancate */
+.component-backup-container {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* Struttura base della Card */
+.backup-card {
+  position: relative;
+  flex: 1;
+  height: 170px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.6);
+  /* Sfondo chiaro leggermente trasparente */
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Bordo tratteggiato rosso */
+  border: 2px dashed #ff3b30;
+  transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.backup-card:hover {
+  transform: translateY(-3px);
+  border-color: transparent;
+  /* Nasconde il bordo statico per far vedere quello animato */
+  background: #ffffff;
+}
+
+/* Contenuto interno */
+.backup-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background: #ffffff;
+  /* Sfondo bianco interno */
+  border-radius: 12px;
+}
+
+.backup-card-icon {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.backup-card:hover .backup-card-icon {
+  transform: scale(1.1);
+}
+
+.backup-card-title {
+  color: #1c1c1e;
+  /* Testo scuro anziché bianco */
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Bordo Ruotante in Hover */
+.backup-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-conic-gradient(#ef4444 0deg 15deg,
+      transparent 15deg 30deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.backup-card:hover::before {
+  opacity: 1;
+  animation: rotateDashedBorder 4s linear infinite;
+}
+
+@keyframes rotateDashedBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.component-backup-container {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.backup-card {
+  position: relative;
+  flex: 1;
+  height: 130px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ef4444;
+  transition: all 0.25s ease;
+}
+
+/* Evita che i figli facciano da "scudo" al click */
+.backup-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background: #ffffff;
+  border-radius: 12px;
+  pointer-events: none;
+  /* <--- CRUCIALE: permette al click di passare alla .backup-card */
+  transition: background 0.25s ease;
+}
+
+.backup-card-title {
+  color: #1c1c1e;
+  font-size: 15px;
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+.backup-card-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* --- STATO SELEZIONATO --- */
+.backup-card.selected {
+  border-style: solid !important;
+  border-color: #ef4444 !important;
+  background: #ef4444 !important;
+}
+
+/* Cambia lo sfondo del contenitore interno quando la card è selezionata */
+.backup-card.selected .backup-card-content {
+  background: #ef4444 !important;
+}
+
+.backup-card.selected .backup-card-title {
+  color: #ffffff !important;
+}
+
+.backup-card.selected .backup-card-icon {
+  filter: brightness(0) invert(1);
+  /* Trasforma le icone in bianco */
+}
+
+.auth-error-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 24px;
+  padding: 8px 12px;
+  margin-bottom: 0.85rem;
+  color: #ef4444;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.25s step-end;
+  pointer-events: none;
+}
+
+.auth-error-component .auth-error-icon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  color: #ef4444;
+}
+
+.auth-error-component .auth-error-text {
+  word-break: break-word;
+}
+
+/* Stato Visibile */
+.auth-error-component.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear;
+}
+
+/* Stato Nascosto Animato */
+.auth-error-component.hide {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+}
+
+/* Card Profilo - Stesse dimensioni del grafico della sicurezza */
+.component-profile-card {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  box-sizing: border-box;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.component-profile-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Icona Avatar (Identica a quella della pagina di login) */
+.profile-avatar-wrapper {
+  width: 90px;
+  height: 90px;
+  min-width: 70px;
+  background-color: #ef4444;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 1.8rem;
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.25);
+  flex-shrink: 0;
+}
+
+/* Contenitore Informazioni a Destra */
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.profile-username {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.profile-info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profile-info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+.profile-info-item i {
+  font-size: 1rem;
+  color: #ef4444;
+  width: 18px;
+  text-align: center;
+}
+
+.profile-info-item strong {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.component-subtitle-red {
+  color: #e63946;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 1.2rem 0 0.6rem 0.25rem;
+  letter-spacing: 0.3px;
+  line-height: 1.3;
+}
+
+/* Container della Card dello Slider */
+.slider-card {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  /* Angoli della card squadrati */
+  padding: 1.25rem 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider-title {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 0.95rem;
+}
+
+.slider-value {
+  font-weight: 700;
+  color: #e63946;
+  font-size: 0.95rem;
+}
+
+/* Wrapper Slider 100% */
+.slider-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Input Range Personalizzato */
+.custom-inactivity-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 12px;
+  /* Rettangolo alto per il binario */
+  outline: none;
+  border-radius: 2px;
+  /* Bordi squadrati */
+  cursor: pointer;
+}
+
+/* Pallino (Thumb) Webkit (Chrome, Electron, Edge) */
+.custom-inactivity-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 24px;
+  background-color: #ffffff;
+  border: 2px solid #e63946;
+  border-radius: 2px;
+  /* Squadrato */
+  cursor: grab;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.1s ease;
+}
+
+.custom-inactivity-slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.1);
+}
+
+/* Pallino (Thumb) Firefox */
+.custom-inactivity-slider::-moz-range-thumb {
+  width: 20px;
+  height: 24px;
+  background-color: #ffffff;
+  border: 2px solid #e63946;
+  border-radius: 2px;
+  /* Squadrato */
+  cursor: grab;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Container */
+.toggle-box-card {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  /* Bordo normale */
+  border-radius: 6px;
+  /* Rettangolo squadrato */
+  padding: 1.1rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Stato Attivo: Tutti i bordi della card diventano rossi e spessi */
+.toggle-box-card.active {
+  border: 2.5px solid #e63946;
+  background-color: #fff8f8;
+  /* Un leggero richiamo rosato di sfondo */
+  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.12);
+}
+
+/* Checkbox a Sinistra (Non Selezionato) */
+.toggle-checkbox-custom {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #cbd5e1;
+  border-radius: 4px;
+  /* Squadrato */
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.toggle-checkbox-custom .check-icon {
+  font-size: 0.75rem;
+  color: #ffffff;
+  display: none;
+}
+
+/* Checkbox Selezionato (Rosso) */
+.toggle-checkbox-custom.checked {
+  background-color: #e63946;
+  border-color: #e63946;
+}
+
+.toggle-checkbox-custom.checked .check-icon {
+  display: block;
+}
+
+/* Testi */
+.toggle-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.toggle-title {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 0.95rem;
+}
+
+.toggle-desc {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.3;
+}
+
+/* Bottone a riga per le impostazioni */
+.settings-row-btn {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.95rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+}
+
+.row-btn-content {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #334155;
+    transition: color 0.2s ease;
+}
+
+/* Gestione Immagine Icona */
+.row-btn-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    opacity: 0.75;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.row-btn-arrow {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+
+/* --- STATO HOVER NORMALE --- */
+.settings-row-btn:hover {
+    border-color: #cbd5e1;
+    background-color: #f8fafc;
+}
+
+.settings-row-btn:hover .row-btn-img {
+    opacity: 1;
+}
+
+.settings-row-btn:hover .row-btn-arrow {
+    color: #64748b;
+    transform: translateX(3px);
+}
+
+/* --- STATO HOVER DISTRUTTIVO (DANGER) --- */
+.settings-row-btn.danger-hover:hover {
+    background-color: #fff5f5; /* Sfondo rosato leggero */
+    border-color: #fecaca;     /* Bordo rosso soft */
+}
+
+.settings-row-btn.danger-hover:hover .row-btn-content,
+.settings-row-btn.danger-hover:hover .row-btn-arrow {
+    color: #e63946;
+}
+
+.settings-row-btn.danger-hover:hover .row-btn-img {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.settings-row-btn:active {
+    transform: scale(0.99);
+}
+
+/* Wrapper per l'import con altezza e spaziatura esplicite */
+.import-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    min-height: 52px; /* Forza l'altezza minima identica agli altri bottoni */
+    padding: 0.75rem 1.25rem; /* Garantisce la spaziatura interna */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+/* Barra progressiva overlay che copre tutta l'altezza */
+.import-progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    background-color: #e63946;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Assicura che i contenuti rimangano al centro e sopra lo sfondo */
+.import-btn-wrapper .row-btn-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Distanza tra icona e testo */
+}
+
+.import-btn-wrapper .row-btn-arrow {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Cambio colore testo e icona in bianco durante l'animazione */
+.import-btn-wrapper:disabled .row-btn-content span {
+    color: #ffffff;
+}
+
+.import-btn-wrapper:disabled .row-btn-img {
+    filter: brightness(0) invert(1);
+}
+
+/* Icona esito */
+.import-status-icon {
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.4rem;
+}
+
+.import-status-icon .text-success { color: #22c55e; }
+.import-status-icon .text-danger { color: #e63946; }
+
+/* Shake Error */
+.shake-error {
+    animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cursorRadius: 300,
     cursorForce: 0.1,
     bulgeOnly: true,
-    gradientFrom: '#111111',
+    gradientFrom: '#8c8c8c',
     gradientTo: '#ffffff',
     glowColor: ''
   });

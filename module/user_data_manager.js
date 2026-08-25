@@ -2,13 +2,15 @@ import crypto from 'node:crypto';
 import argon2 from 'argon2';
 import Database from 'better-sqlite3';
 
+import { writeFile } from 'node:fs/promises';
+
 const DB_PATH = "./db/vault_user.db"
 
 function find_user(username) {
     let db;
     try {
         db = new Database(DB_PATH);
-        const userRow = db.prepare('SELECT salt, auth_hash, encrypted_data FROM user_vault WHERE username = ?').get(username);
+        const userRow = db.prepare('SELECT salt, auth_hash, encrypted_data, created_at FROM user_vault WHERE username = ?').get(username);
         return userRow || null;
     } catch (error) {
         console.error("Errore lettura DB in find_user:", error.message);
@@ -52,13 +54,14 @@ async function read_user_data(username, kEnc) {
     if (!userRow) {
         return { status: false, message: "Utente non trovato" };
     }
+    console.log(userRow);
 
     const payload = decrypt_payload(kEnc, userRow.encrypted_data);
     if (!payload) {
         return { status: false, message: "Impossibile decifrare i dati. Chiave non valida o dati corrotti." };
     }
 
-    return { status: true, data: payload };
+    return { status: true, data: payload, username: username, created_at: userRow.created_at };
 }
 
 async function add_user_data(username, kEnc, newAccount) {
@@ -109,4 +112,12 @@ async function clear_user_data(username, kEnc) {
     }
 }
 
-export { read_user_data, add_user_data, clear_user_data };
+async function remember_me(username) {
+    const payload = { remember: true, username: username};
+    await writeFile('./setting.json', JSON.stringify(payload, null, 2), 'utf8');
+    
+}
+
+
+
+export { read_user_data, add_user_data, clear_user_data, remember_me, decrypt_payload };

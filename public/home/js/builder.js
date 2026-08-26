@@ -97,7 +97,7 @@ export function createCustomInput(placeholder = '', type = 'text', iconSrc = '',
     let pickerHtml = '';
     if (hasPicker) {
         pickerHtml = `
-            <div class="picker-trigger-wrapper" id="picker-trigger-${id}">
+            <div class="picker-trigger-wrapper" id="picker-trigger-${id}" style="z-index: 10000 !important">
                 <img src="./asset/icon/select.png" class="picker-trigger-icon" alt="Select Icon">
                 <div class="brand-picker-dropdown" id="picker-dropdown-${id}">
                     <div class="picker-search-container">

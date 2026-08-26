@@ -1881,6 +1881,7 @@
 
 /* --- ANIMAZIONE PULITA SUI COMPONENTI INTERNI (Niente Flash) --- */
 
+
 @keyframes componentFadeIn {
   from {
     opacity: 0;
@@ -1893,6 +1894,7 @@
 }
 
 /* Applica l'animazione d'ingresso a qualsiasi elemento dentro l'option-box */
+
 #option-box > * {
   animation: componentFadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: opacity, transform;

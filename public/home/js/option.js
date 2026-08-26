@@ -1,4 +1,5 @@
-import { createMainTitle, createInfoParagraph, createPasswordCard, createDivider, createCustomInput, createEmptyState, createSecurityChartCard, createLogoLoop, createButton, createBackupCards, createAuthErrorComponent, createProfileCard, createSubTitle, createInactivitySlider, createBoxToggleCard, createSettingsRowButton, createImportButton } from './builder.js';
+import { createMainTitle, createInfoParagraph, createPasswordCard, createDivider, createCustomInput, createEmptyState, createSecurityChartCard, createLogoLoop, createButton, createBackupCards, createAuthErrorComponent, createProfileCard, createSubTitle, createInactivitySlider, createBoxToggleCard, createSettingsRowButton, createImportButton, createLogTerminal, createNotesIntroSection, createProtectedNote, createPasswordRadar } from './builder.js';
+import { initDecryptedText } from '../decryptedText/decryptedText.js';
 
 const optionBox = document.getElementById('option-box');
 
@@ -111,7 +112,7 @@ export async function loadHomeView() {
 
 export async function loadPasswordView() {
     const block1 = createMainTitle("Password");
-    const block2 = createInfoParagraph("Gestisci tutte le tue password clicca sull'occhio per visualizzarla o sul cuore per aggiungerla ai preferiti");
+    const block2 = createInfoParagraph("Gestisci tutte le tue password clicca sull'occhio per visualizzarla");
     const component = [block1, block2];
     let password_list = await window.api.leggi_data();
     let component_vett = [];
@@ -148,9 +149,7 @@ export function loadAddView() {
 
 window.loadAddView = loadAddView;
 
-export function preferitiaView() {
 
-}
 export function backupView() {
     let selectedOption = null;
 
@@ -189,30 +188,27 @@ export function backupView() {
 
     renderStack([block1, block2, block3, block4, authError.element, block5]);
 }
-export function cestinoView() {
 
-}
 export async function profiloView() {
 
     const user_data = await window.api.leggi_data();
 
     const block1 = createMainTitle("Profilo");
     const block2 = createProfileCard(user_data.username, user_data.created_at, user_data.data.accounts.length);
-    const block3 = createInfoParagraph("Per informazioni sulla privacy o per contattare l'assistenza:")
-    const block4 = createInfoParagraph("gmail:  krypta-info@gmail.net");
-    const block5 = createInfoParagraph("Cell:   +3534462385");
+    const block3 = createInfoParagraph("Per informazioni sulla privacy o per contattare l'assistenza gmail:  krypta-info@gmail.net")
+    const block6 = createSettingsRowButton("Effettua il log-out", "./asset/icon/logout.png", true, () => window.api.log_out());
 
 
-    renderStack([block1, block2, block3, block4, block5]);
+    renderStack([block1, block2, block3, block6]);
 
 }
-export function impostazioniView() {
+export async function impostazioniView() {
     const block1 = createMainTitle("Impostazioni");
     const block2 = createInfoParagraph("Gestisci sicurezza e preferenze qui nell'area impostazioni");
     const block3 = createDivider();
     const block4 = createSubTitle("Gestione inattività");
     const block5 = createInfoParagraph("Blocco automatico per inattività: scegli dopo quanto tempo effettuare il logout");
-    const block6 = createInactivitySlider(10, (minuti) => {
+    const block6 = createInactivitySlider(30, (minuti) => {
         console.log(`Tempo impostato a: ${minuti} minuti`);
     });
     const block7 = createBoxToggleCard(
@@ -227,7 +223,7 @@ export function impostazioniView() {
         "Risparmi prestazioni CPU",
         "Risparmi prestazioni sulla CPU disattivando gli sfondi animati",
         false,
-        (stato) => console.log("Risparmio CPU attivo:", stato)
+        (stato) => switch_state(stato)
     );
     const block11 = createDivider();
     const block12 = createSubTitle("Gestione database");
@@ -236,28 +232,123 @@ export function impostazioniView() {
         "Importa un file di backup .json",
         "./asset/icon/backup.png",
         async ({ startAnimation, stopAnimation }) => {
-            startAnimation(1500);
+
 
             const res = await window.api.importa_backup();
-            console.log(res);
+            startAnimation(1500);
+
             setTimeout(() => {
                 if (res && res.status) {
-                    stopAnimation(true);
+                    stopAnimation(true, "Backup caricato!");
                 } else {
-                    stopAnimation(false);
+                    stopAnimation(false, res.message);
                 }
             }, 1500);
         }
     );
 
-    const block14 = createSettingsRowButton("Eliminami dal database", "./asset/icon/delete_db.png", true);
-    const block15 = createSettingsRowButton("Elimina tutte le mie password", "./asset/icon/delete_password.png", true);
+    const block14 = createSettingsRowButton("Eliminami dal database", "./asset/icon/delete_db.png", true, () => openConfirmPopup("Sei sicuro di voler il tuo account e tutti i tuoi dati?", async () => { await window.api.elimina_user_data(); }));
+    const block15 = createSettingsRowButton("Elimina tutte le mie password", "./asset/icon/delete_password.png", true, () => openConfirmPopup("Sei sicuro di voler eliminare tutte le tue password?", async () => { await window.api.svuota_data(); }));
+    const block16 = createSettingsRowButton("Elimina tutti i log", "./asset/icon/delete_log.png", true, () => openConfirmPopup("Sei sicuro di voler eliminare tutti i log servono per monitorare la sicurezza?", async () => { await window.api.svuota_log(); }));
 
+    const block17 = createDivider();
+    const block18 = createSubTitle("Gestione profilo");
+    const user_data = await window.api.leggi_data();
+    const block19 = createProfileCard(user_data.username, user_data.created_at, user_data.data.accounts.length);
+
+    const block20 = createSettingsRowButton("Effettua il log-out", "./asset/icon/logout.png", true, () => window.api.log_out());
     renderStack([
         block1, block2, block3, block4, block5,
         block6, block7, block8, block9, block10,
-        block11, block12, importBtnObj.element, block14, block15
+        block11, block12, importBtnObj.element, block14, block15, block16, block17, block18, block19, block20
     ]);
+}
+
+export async function protectView() {
+    // 1. Crea il titolo principale tramite il builder
+    const block1 = createMainTitle("");
+
+    initDecryptedText({
+        container: block1,
+        text: "Privacy e Sicurezza",
+        animateOn: 'view',
+        revealDirection: 'start',
+        speed: 80,
+        className: 'text-revealed',
+        encryptedClassName: 'text-encrypted'
+    });
+
+    const block2 = createInfoParagraph("Tutta la criptografia dei dati sensibili ha come chiave la tua password.");
+    const block3 = createInfoParagraph("Il sistema zero-knowledge fa sì che neanche l'app stessa conosca i tuoi dati, rendendola una fortezza inespugnabile. Firewall di sicurezza e algoritmi pesanti per l'autenticazione la rendono un'app PQC (Post Quantum Cryptography) garantendo sicurezza duratura nel tempo.");
+    const block4 = createDivider();
+    const block5 = createSubTitle("Cronologia Log");
+    const block6 = createInfoParagraph("Guarda la cronologia delle azioni effettuate sul tuo account");
+    const log_data = await window.api.read_log();
+
+    let block7 = null;
+    const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19);
+
+    if (log_data.valid) {
+        block7 = createLogTerminal(log_data.username, (log_data.logs).toReversed());
+    } else {
+        block7 = createLogTerminal(log_data.username, [[`${timestamp} - Attenzione: database log compromesso o corrotto`, "DANGER"]]);
+    }
+    const block8 = createDivider();
+    const block9 = createSubTitle("Generazione password");
+    const block10 = createInfoParagraph("Imposta le tue preferenze sulla generazione delle password");
+    const handleApplyPreferences = (newPreferences) => {
+        console.log("Nuove preferenze salvate:", newPreferences);
+    };
+
+    let userPreferences = await window.api.load_pref();
+    if (!userPreferences.generato_pref) {
+        userPreferences = {
+            length: 16,
+            numbersRatio: 0.5,
+            symbolsRatio: 0.5,
+            lettersRatio: 0.5,
+            uppercaseRatio: 0.5
+        };
+    };
+    const block12 = createDivider();
+
+    console.log(userPreferences.generato_pref)
+
+    const block11 = createPasswordRadar(handleApplyPreferences, userPreferences.generato_pref);
+    renderStack([block1, block2, block3, block8, block9, block10, block11, block4, block5, block6, block7, block12]);
+}
+
+export async function notesView() {
+    const block1 = createNotesIntroSection();
+    const block2 = createDivider();
+    const block3 = createMainTitle("Nota protetta");
+    const block4 = createInfoParagraph("Modifica la tua nota protetta, Qui puoi inserire contenuti sensibili.");
+
+    const check_pin = await window.api.check_pin_saved();
+    const block5 = createProtectedNote({
+        onPinSubmit: async (pin, isNew) => {
+
+            if (!check_pin.status) {
+                block5.triggerError("Errore interno rieffettua il login", 1500);
+            }
+            let saved = null;
+            if (check_pin.set) {
+                saved = await window.api.set_pin(pin);
+            } else {
+                saved = await window.api.check_pin(pin);
+            }
+
+
+            if (saved.status) {
+                block5.unlockNote(saved.content || "Ecco il contenuto decifrato della tua nota protetta!");
+            } else {
+                block5.triggerError(saved.message, 1500);
+            }
+        },
+        set: check_pin.set
+    });
+
+    renderStack([block1, block2, block3, block4, block5]);
 }
 
 loadHomeView();

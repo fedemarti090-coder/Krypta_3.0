@@ -73,3 +73,66 @@ async function carica_password() {
     console.log(ans)
 
 }
+
+function openConfirmPopup(question, onConfirm) {
+
+    const existingOverlay = document.querySelector('.popup-confirm-overlay');
+    if (existingOverlay) existingOverlay.remove();
+
+
+    const overlay = document.createElement('div');
+    overlay.className = 'popup-confirm-overlay';
+
+    overlay.innerHTML = `
+        <div class="popup-confirm-card">
+            <p class="popup-confirm-text">${question}</p>
+            <div class="popup-confirm-actions">
+                <button type="button" class="popup-btn popup-btn-cancel">Annulla</button>
+                <button type="button" class="popup-btn popup-btn-confirm">Procedi</button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+
+    const closePopup = () => {
+        overlay.classList.add('closing');
+        overlay.addEventListener('animationend', () => {
+            overlay.remove();
+        }, { once: true });
+    };
+
+
+    requestAnimationFrame(() => {
+        overlay.classList.add('active');
+    });
+
+
+    const cancelBtn = overlay.querySelector('.popup-btn-cancel');
+    const confirmBtn = overlay.querySelector('.popup-btn-confirm');
+
+
+    cancelBtn.addEventListener('click', closePopup);
+
+
+    confirmBtn.addEventListener('click', () => {
+        closePopup();
+        if (typeof onConfirm === 'function') {
+            onConfirm();
+        }
+    });
+
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            closePopup();
+        }
+    });
+}
+
+function switch_state(state) {
+    const bg2 = document.getElementById("dot-field-wrapper");
+
+    if (bg2) bg2.classList.toggle('hidden', Boolean(state));
+}

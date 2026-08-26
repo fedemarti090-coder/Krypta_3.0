@@ -10,7 +10,7 @@ body {
   width: 100%;
   height: 100vh;
   font-family: 'Poppins', sans-serif;
-  background-color: #0d0d11;
+  background-color: #0f172a;
   /* Fallback scuro in attesa del canvas */
   display: flex;
   justify-content: center;
@@ -97,4 +97,124 @@ button.is-error,
     transform: scale(1);
     opacity: 1;
   }
+}
+
+/* Overlay con Sfondo Scuro semi-trasparente */
+.popup-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.popup-confirm-overlay.active {
+  opacity: 1;
+}
+
+/* Card interna in Tema Bianco */
+.popup-confirm-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  width: 90%;
+  max-width: 380px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: scale(0.9);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.popup-confirm-overlay.active .popup-confirm-card {
+  transform: scale(1);
+}
+
+/* Animazione di Uscita */
+.popup-confirm-overlay.closing {
+  animation: popupFadeOut 0.18s ease forwards;
+}
+
+.popup-confirm-overlay.closing .popup-confirm-card {
+  animation: popupScaleDown 0.18s ease forwards;
+}
+
+@keyframes popupFadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes popupScaleDown {
+  to {
+    transform: scale(0.9);
+  }
+}
+
+/* Testo Scuro */
+.popup-confirm-text {
+  color: #1f2937;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Centratura Orizzontale dei Pulsanti */
+.popup-confirm-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  /* Centra orizzontalmente i bottoni */
+  align-items: center;
+  width: 100%;
+}
+
+.popup-btn {
+  flex: 1;
+  /* Rende i pulsanti di pari larghezza (opzionale) */
+  max-width: 140px;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.popup-btn:active {
+  transform: scale(0.96);
+}
+
+/* Bottone Annulla */
+.popup-btn-cancel {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+}
+
+.popup-btn-cancel:hover {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+/* Bottone Procedi (Rosso Accent) */
+.popup-btn-confirm {
+  background-color: #e63946;
+  color: #ffffff;
+}
+
+.popup-btn-confirm:hover {
+  background-color: #d62839;
+}
+
+.hidden {
+  display: none !important;
 }

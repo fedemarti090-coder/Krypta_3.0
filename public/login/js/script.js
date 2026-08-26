@@ -1,12 +1,13 @@
-
-
 document.addEventListener('DOMContentLoaded', async () => {
   const pref = await window.api.load_pref();
-  console.log(pref);
-  if (pref.remember) {
-    document.getElementById("username").value = pref.username;
-    document.getElementById("remember").checked = true;
-  }
+  console.log(pref)
+  const usernameInput = document.getElementById("username");
+  const rememberCheckbox = document.getElementById("remember");
+
+  usernameInput.value = pref.global.username;
+  rememberCheckbox.checked = pref.global.remember;
+
+
 });
 
 const btn_dx_up = document.getElementById("btn-signin");
@@ -91,9 +92,14 @@ async function login() {
     finishLoginAnimation(ans.status);
     if (!ans.status) {
       showError(ans.message);
+      return;
     }
-    setTimeout(() => {
-      window.api.load_html('home')
+    setTimeout(async () => {
+      await start_transition();
+      setTimeout(()=>{
+        window.api.load_html('home');
+      }, 350);
+      
     }, 850)
   } catch (error) {
     console.error("Errore di rete/IPC:", error);
@@ -124,7 +130,12 @@ async function register() {
     finishLoginAnimation(ans.status);
     if (!ans.status) {
       showError(ans.message);
+      return;
     }
+    setTimeout(async () => {
+      await start_transition();
+      window.api.load_html('home')
+    }, 850)
   } catch (error) {
     console.error("Errore di rete/IPC:", error);
     finishLoginAnimation(false);
@@ -182,3 +193,27 @@ function clearErrors() {
     input.classList.remove('input-error');
   });
 }
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    login();
+  }
+});
+
+function start_transition() {
+    return new Promise((resolve) => {
+        const container = document.querySelector('.main-container');
+
+        container.classList.add('is-animating');
+
+        setTimeout(() => {
+            container.classList.add('view-home');
+
+            setTimeout(() => {
+                resolve();
+            }, 350); 
+
+        }, 250);
+    });
+}
+

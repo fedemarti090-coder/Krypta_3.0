@@ -2,7 +2,9 @@ import crypto from 'node:crypto';
 import argon2 from 'argon2';
 import Database from 'better-sqlite3';
 
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'fs/promises';
+import path from 'path';
+import { new_log } from './log_sistem.js';
 
 const DB_PATH = "./db/vault_user.db"
 
@@ -50,11 +52,9 @@ function encrypt_payload(kEnc, vaultObj) {
 
 async function read_user_data(username, kEnc) {
     const userRow = find_user(username);
-    console.log(userRow, username, kEnc);
     if (!userRow) {
         return { status: false, message: "Utente non trovato" };
     }
-    console.log(userRow);
 
     const payload = decrypt_payload(kEnc, userRow.encrypted_data);
     if (!payload) {
@@ -64,30 +64,63 @@ async function read_user_data(username, kEnc) {
     return { status: true, data: payload, username: username, created_at: userRow.created_at };
 }
 
-async function add_user_data(username, kEnc, newAccount) {
+async function add_user_data(username, kEnc, importedData, isEncryptedPayload = false) {
     const userRow = find_user(username);
     if (!userRow) {
         return { status: false, message: "Utente non trovato" };
     }
 
-    const vaultObj = decrypt_payload(kEnc, userRow.encrypted_data);
-    if (!vaultObj) {
-        return { status: false, message: "Errore durante la decifratura del vault." };
+
+    let currentVault = await decrypt_payload(kEnc, userRow.encrypted_data);
+    if (!currentVault || !Array.isArray(currentVault.accounts)) {
+        currentVault = { accounts: [] };
     }
 
-    vaultObj.accounts.push(newAccount);
+    let incomingAccounts = [];
 
-    const newEncryptedPayload = encrypt_payload(kEnc, vaultObj);
+    if (isEncryptedPayload) {
 
+        const importedVault = await decrypt_payload(kEnc, importedData);
+        if (!importedVault || !Array.isArray(importedVault.accounts)) {
+            return { status: false, message: "Impossibile decifrare il backup protetto." };
+        }
+        incomingAccounts = importedVault.accounts;
+    } else {
+
+        if (Array.isArray(importedData.accounts)) {
+            incomingAccounts = importedData.accounts;
+        } else if (Array.isArray(importedData)) {
+            incomingAccounts = importedData;
+        } else {
+
+            incomingAccounts = [importedData];
+        }
+    }
+
+    const existingIds = new Set(currentVault.accounts.map(acc => acc.id || JSON.stringify(acc)));
+
+    for (const acc of incomingAccounts) {
+        const identifier = acc.id || JSON.stringify(acc);
+        if (!existingIds.has(identifier)) {
+            currentVault.accounts.push(acc);
+            existingIds.add(identifier);
+        }
+    }
+
+    const newEncryptedPayload = await encrypt_payload(kEnc, currentVault);
+
+    let db = null;
     try {
-        const db = new Database(DB_PATH);
+        db = new Database(DB_PATH);
         const stmt = db.prepare('UPDATE user_vault SET encrypted_data = ? WHERE username = ?');
         stmt.run(newEncryptedPayload, username);
         db.close();
+        new_log(username, ["Backup importato", "SUCCESS"]);
 
-        return { status: true, message: "Account salvato con successo", data: vaultObj };
+        return { status: true, message: "Backup importato e unite le password con successo", data: currentVault };
     } catch (error) {
-        return { status: false, message: error.message };
+        if (db && db.open) db.close();
+        return { status: false, message: "Errore durante il salvataggio nel database: " + error.message };
     }
 }
 
@@ -106,18 +139,57 @@ async function clear_user_data(username, kEnc) {
         stmt.run(newEncryptedPayload, username);
         db.close();
 
+        new_log(username, ["Tutte le password sono state eliminate", "SUCCESS"]);
+
         return { status: true, message: "Vault svuotato con successo", data: emptyVault };
     } catch (error) {
         return { status: false, message: error.message };
     }
 }
 
-async function remember_me(username) {
-    const payload = { remember: true, username: username};
-    await writeFile('./setting.json', JSON.stringify(payload, null, 2), 'utf8');
-    
+async function remember_me(payload) {
+    try {
+        let currentConfig = {};
+
+        try {
+            const fileContent = await readFile('./setting.json', 'utf8');
+            currentConfig = JSON.parse(fileContent);
+        } catch (readError) {
+            currentConfig = {};
+        }
+
+        const updatedConfig = {
+            ...currentConfig,
+            ...payload
+        };
+
+        await writeFile('./setting.json', JSON.stringify(updatedConfig, null, 2), 'utf8');
+        return true;
+    } catch (error) {
+        console.error("Errore durante l'aggiornamento di setting.json:", error);
+        return false;
+    }
 }
 
+function delete_user_data(username) {
+    const targetUser = username;
+    if (!targetUser) return { status: false, message: "Username mancante" };
+
+    let db = null;
+    try {
+        db = new Database(DB_PATH);
+        const info = db.prepare('DELETE FROM user_vault WHERE username = ?').run(targetUser);
+        db.close();
+
+        return info.changes > 0
+            ? { status: true, message: "Utente eliminato" }
+            : { status: false, message: "Utente non trovato" };
+    } catch (error) {
+        if (db && db.open) db.close();
+        return { status: false, message: error.message };
+    }
+};
 
 
-export { read_user_data, add_user_data, clear_user_data, remember_me, decrypt_payload };
+
+export { read_user_data, add_user_data, clear_user_data, remember_me, decrypt_payload, delete_user_data };

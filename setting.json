@@ -1,4 +1,13 @@
 {
-  "remember": true,
-  "username": "Fede"
+  "global": {
+    "remember": true,
+    "username": "Fede"
+  },
+  "generato_pref": {
+    "length": 32,
+    "numbersRatio": 1,
+    "symbolsRatio": 0.19,
+    "lettersRatio": 1,
+    "uppercaseRatio": 0.5
+  }
 }

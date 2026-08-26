@@ -1257,151 +1257,643 @@
 
 /* Bottone a riga per le impostazioni */
 .settings-row-btn {
-    width: 100%;
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 0.95rem 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    outline: none;
-    box-sizing: border-box;
-    margin-bottom: 0.5rem;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.95rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
 }
 
 .row-btn-content {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #334155;
-    transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #334155;
+  transition: color 0.2s ease;
 }
 
 /* Gestione Immagine Icona */
 .row-btn-img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-    opacity: 0.75;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .row-btn-arrow {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #cbd5e1;
-    line-height: 1;
-    transition: all 0.2s ease;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  line-height: 1;
+  transition: all 0.2s ease;
 }
 
 /* --- STATO HOVER NORMALE --- */
 .settings-row-btn:hover {
-    border-color: #cbd5e1;
-    background-color: #f8fafc;
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
 }
 
 .settings-row-btn:hover .row-btn-img {
-    opacity: 1;
+  opacity: 1;
 }
 
 .settings-row-btn:hover .row-btn-arrow {
-    color: #64748b;
-    transform: translateX(3px);
+  color: #64748b;
+  transform: translateX(3px);
 }
 
 /* --- STATO HOVER DISTRUTTIVO (DANGER) --- */
 .settings-row-btn.danger-hover:hover {
-    background-color: #fff5f5; /* Sfondo rosato leggero */
-    border-color: #fecaca;     /* Bordo rosso soft */
+  background-color: #fff5f5;
+  /* Sfondo rosato leggero */
+  border-color: #fecaca;
+  /* Bordo rosso soft */
 }
 
 .settings-row-btn.danger-hover:hover .row-btn-content,
 .settings-row-btn.danger-hover:hover .row-btn-arrow {
-    color: #e63946;
+  color: #e63946;
 }
 
 .settings-row-btn.danger-hover:hover .row-btn-img {
-    opacity: 1;
-    transform: scale(1.1);
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .settings-row-btn:active {
-    transform: scale(0.99);
+  transform: scale(0.99);
 }
 
 /* Wrapper per l'import con altezza e spaziatura esplicite */
 .import-btn-wrapper {
-    position: relative;
-    overflow: hidden;
-    min-height: 52px; /* Forza l'altezza minima identica agli altri bottoni */
-    padding: 0.75rem 1.25rem; /* Garantisce la spaziatura interna */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  min-height: 52px;
+  /* Forza l'altezza minima identica agli altri bottoni */
+  padding: 0.75rem 1.25rem;
+  /* Garantisce la spaziatura interna */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
 /* Barra progressiva overlay che copre tutta l'altezza */
 .import-progress-fill {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 0%;
-    background-color: #e63946;
-    z-index: 0;
-    pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  background-color: #e63946;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* Assicura che i contenuti rimangano al centro e sopra lo sfondo */
 .import-btn-wrapper .row-btn-content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem; /* Distanza tra icona e testo */
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  /* Distanza tra icona e testo */
 }
 
 .import-btn-wrapper .row-btn-arrow {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
 }
 
 /* Cambio colore testo e icona in bianco durante l'animazione */
 .import-btn-wrapper:disabled .row-btn-content span {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .import-btn-wrapper:disabled .row-btn-img {
-    filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }
 
 /* Icona esito */
 .import-status-icon {
-    font-size: 0.9rem;
-    display: inline-flex;
-    align-items: center;
-    margin-left: 0.4rem;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.4rem;
 }
 
-.import-status-icon .text-success { color: #22c55e; }
-.import-status-icon .text-danger { color: #e63946; }
+.import-status-icon .text-success {
+  color: #22c55e;
+}
+
+.import-status-icon .text-danger {
+  color: #e63946;
+}
 
 /* Shake Error */
 .shake-error {
-    animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
 @keyframes shake {
-    10%, 90% { transform: translate3d(-1px, 0, 0); }
-    20%, 80% { transform: translate3d(2px, 0, 0); }
-    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-    40%, 60% { transform: translate3d(4px, 0, 0); }
+
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.import-status-msg {
+  font-size: 0.85rem;
+  margin-left: 0.35rem;
+  font-weight: 500;
+}
+
+/* Cambia colore al testo a seconda dell'esito */
+.status-success .import-status-msg {
+  color: #22c55e;
+}
+
+.status-error .import-status-msg {
+  color: #e63946;
+}
+
+/* Contenitore della pagina Sicurezza (stessa struttura di Impostazioni) */
+.security-page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  /* Attiva lo scroll fluido della pagina */
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Terminale adattabile che riempie lo spazio disponibile */
+.ps-terminal-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: #f8fafc;
+  box-sizing: border-box;
+  margin-top: 1rem;
+
+  /* Permette l'espansione automatica in base ai log contenuti */
+  height: auto !important;
+  max-height: none !important;
+  min-height: fit-content;
+}
+
+.ps-terminal-body {
+  height: auto !important;
+  max-height: none !important;
+  overflow-y: visible !important;
+}
+
+/* Header fisso del terminale */
+.ps-terminal-header {
+  background-color: #e2e8f0;
+  border-bottom: 1px solid #cbd5e1;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.ps-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ps-header-icon-img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.ps-header-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Corpo del Terminale con Scroll Interno */
+.ps-terminal-body {
+  background-color: #f1f5f9;
+  padding: 1rem;
+  flex: 1;
+  overflow-y: auto;
+  /* Scroll come nelle liste impostazioni */
+  font-family: 'Consolas', 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #0f172a;
+  box-sizing: border-box;
+}
+
+/* Righe di testo */
+.ps-log-line {
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin-bottom: 0.25rem;
+}
+
+.ps-prompt-header {
+  color: #475569;
+  margin-bottom: 0.75rem;
+}
+
+.ps-prompt {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.ps-text {
+  color: #0f172a;
+}
+
+.ps-empty {
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Personalizzazione Scrollbar elegante stile Impostazioni */
+.ps-terminal-body::-webkit-scrollbar,
+.security-page-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ps-terminal-body::-webkit-scrollbar-track,
+.security-page-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ps-terminal-body::-webkit-scrollbar-thumb,
+.security-page-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.ps-terminal-body::-webkit-scrollbar-thumb:hover,
+.security-page-container::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+
+
+.text-encrypted {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Container principale della nota protetta */
+.protected-note-container {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 16px;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Textarea / Editor di testo */
+.protected-note-editor {
+  width: 100%;
+  height: 100%;
+  min-height: 230px;
+  border: none;
+  outline: none;
+  resize: vertical;
+  background: transparent;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #111827;
+  line-height: 1.6;
+  transition: filter 0.4s ease;
+}
+
+/* Stato bloccato: effetto sfuocato sul testo sotto */
+.protected-note-container.locked .protected-note-editor {
+  filter: blur(8px);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Overlay di sblocco (PIN) sopra la textarea */
+.protected-note-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.protected-note-container.unlocked .protected-note-overlay {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Titolo/Istruzione overlay */
+.protected-note-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Contenitore delle 6 caselle OTP */
+.otp-container {
+  display: flex;
+  gap: 8px;
+}
+
+.otp-input {
+  width: 44px;
+  height: 52px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111827;
+  background: #f3f4f6;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.otp-input:focus {
+  border-color: #dc2626;
+  /* Rosso accent */
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.otp-input.filled {
+  border-color: #9ca3af;
+  background: #ffffff;
+}
+
+.protected-note-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  /* Stesso colore del titoletto */
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Stile per l'icona SVG del lucchetto */
+.protected-note-icon {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+  /* Prende lo stesso colore del testo (#111827) */
+  display: block;
+}
+
+/* Contenitore Principale a due colonne */
+.krypta-radar-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 1rem;
+  user-select: none;
+  gap: 2rem;
+}
+
+/* Sezione Sinistra (SVG) */
+.krypta-radar-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.krypta-radar-svg {
+  overflow: visible;
+  cursor: default;
+}
+
+/* Sezione Destra (Testo & Bottone) */
+.krypta-radar-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.krypta-radar-header {
+  margin-bottom: 1.25rem;
+}
+
+.krypta-radar-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.35rem;
+}
+
+.krypta-radar-subtitle {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* Griglia e Assi */
+.radar-grid-line {
+  stroke: #e2e8f0;
+  stroke-width: 1;
+}
+
+.radar-axis-line {
+  stroke: #cbd5e1;
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+
+/* Poligono e Puntini in Rosso Krypta (#FF4B4B) */
+.radar-polygon {
+  fill: rgba(255, 75, 75, 0.18);
+  stroke: #FF4B4B;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.radar-point-handle {
+  fill: #FF4B4B;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  cursor: grab;
+  transition: r 0.15s ease, fill 0.15s ease;
+}
+
+.radar-point-handle:hover,
+.radar-point-handle:active {
+  r: 9;
+  fill: #e03e3e;
+  cursor: grabbing;
+}
+
+.radar-label {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  fill: #475569;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* Pulsante Applica in Rosso Krypta */
+.krypta-radar-apply-btn {
+  width: 100%;
+  max-width: 220px;
+  padding: 0.65rem 1.25rem;
+  background-color: #FF4B4B;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(255, 75, 75, 0.3);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+
+
+.krypta-radar-apply-btn:active {
+  transform: scale(0.98);
+}
+
+/* Container della colonna destra */
+.krypta-radar-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centra sia l'header che il bottone orizzontalmente */
+  justify-content: center;
+  gap: 20px;
+  /* Spazio tra il blocco testo e il bottone */
+  text-align: center;
+  /* Centra il testo all'interno di titolo e sottotitolo */
+}
+
+/* Header (Titolo + Sottotitolo) */
+.krypta-radar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Bottone Applica */
+.krypta-radar-apply-btn {
+  align-self: center;
+  /* Garantisce il centraggio perfetto anche se il container cambia */
+  margin: 0 auto;
+  /* Fallback per il centraggio orizzontale */
+}
+
+.krypta-radar-crack-time {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: #a0a0a0;
+}
+
+.crack-time-value {
+    font-weight: 600;
+    color: #FF4B4B; /* Verde (#00E676) se vuoi evidenziare la sicurezza, o Rosso Krypta */
+}
+
+.krypta-radar-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.krypta-radar-title-icon {
+    width: 22x;
+    height: 22px;
+    object-fit: contain;
+}
+
+/* --- ANIMAZIONE PULITA SUI COMPONENTI INTERNI (Niente Flash) --- */
+
+@keyframes componentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Applica l'animazione d'ingresso a qualsiasi elemento dentro l'option-box */
+#option-box > * {
+  animation: componentFadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
 }

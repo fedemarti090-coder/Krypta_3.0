@@ -2,6 +2,8 @@ import crypto from 'node:crypto';
 import argon2 from 'argon2';
 import Database from 'better-sqlite3';
 
+import { new_log } from './log_sistem.js';
+
 async function register(username, password) {
 
     const saltBuffer = crypto.randomBytes(32);
@@ -51,6 +53,8 @@ async function register(username, password) {
         `);
 
         stmt.run(username, saltBuffer.toString('hex'), auth_hash_hex, encrypted_data_payload);
+        new_log(username, ["Account registrato", "SUCCESS"]);
+
         return {
             status: true,
             kEnc: kEncSession

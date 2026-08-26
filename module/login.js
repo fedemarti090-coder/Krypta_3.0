@@ -2,6 +2,8 @@ import crypto from 'node:crypto';
 import argon2 from 'argon2';
 import Database from 'better-sqlite3';
 
+import { new_log } from './log_sistem.js';
+
 async function login(username, password) {
     let userRow = null;
     try {
@@ -13,7 +15,7 @@ async function login(username, password) {
             message: "username non attivo"
         }
     };
-    if(!userRow){
+    if (!userRow) {
         return {
             status: false,
             message: "Username non trovato"
@@ -42,6 +44,7 @@ async function login(username, password) {
     const isValidPassword = crypto.timingSafeEqual(calculated_auth_hash, stored_auth_hash);
 
     if (!isValidPassword) {
+        new_log(username, ["Accesso negato per password errata", "FAILED"]);
         return {
             status: false,
             message: "Password errata"
@@ -62,7 +65,7 @@ async function login(username, password) {
 
     kEnc.fill(0);
     kAuth.fill(0);
-
+    new_log(username, ["Accesso effettuato", "SUCCESS"])
     return {
         status: true,
         message: "Login effettuato",

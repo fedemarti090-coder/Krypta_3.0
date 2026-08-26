@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-import { loadHomeView, loadPasswordView, loadAddView, backupView, profiloView, impostazioniView } from './option.js';
+import { loadHomeView, loadPasswordView, loadAddView, backupView, profiloView, impostazioniView, protectView, notesView } from './option.js';
 
 document.getElementById("home").addEventListener("click", () => {
     loadHomeView();
@@ -64,4 +64,12 @@ document.getElementById("profilo").addEventListener("click", ()=>{
 
 document.getElementById("setting").addEventListener("click", ()=>{
     impostazioniView();
+})
+
+document.getElementById("protect").addEventListener("click", ()=>{
+    protectView();
+})
+
+document.getElementById("note").addEventListener("click", ()=>{
+    notesView();
 })

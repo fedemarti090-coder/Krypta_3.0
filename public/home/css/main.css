@@ -1,3 +1,25 @@
+/* --- BLOCCO ANTI-FLASH TOTALE --- */
+html, body {
+    background-color: #e93c3c !important; /* Il colore scuro di fondo di Krypta */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Nasconde l'intera pagina finché non è completamente caricata e stabilizzata */
+body {
+    opacity: 0;
+    animation: globalPageFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes globalPageFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 /* Container Principale */
 .main-container {
   width: 90vw;
@@ -182,3 +204,85 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
+
+/* --- ANIMAZIONE FADE-IN PIÙ LENTA --- */
+
+/* 1. Definiamo i keyframe */
+@keyframes homeContentFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. Il Brand resta fisso e sempre visibile */
+.brand {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 3. Classe per gli elementi in entrata */
+.fade-in-content {
+  /* Assicura che l'elemento sia trasparente PRIMA di iniziare l'animazione */
+  opacity: 0; 
+  
+  /* Animazione rallentata a 1s con easing ultra fluido */
+  animation: homeContentFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+/* 4. Ritardi sequenziali (Stagger) rallentati per far notare l'effetto */
+.sidebar-divider.fade-in-content {
+  animation-delay: 0.1s;
+}
+
+.sidebar-nav.fade-in-content {
+  animation-delay: 0.2s;
+}
+
+.sidebar-bottom.fade-in-content {
+  animation-delay: 0.35s;
+}
+
+.welcome-side > .fade-in-content {
+  animation-delay: 0.45s;
+}
+
+/* --- PREVENZIONE FLASH + ANIMAZIONE FLUIDA --- */
+
+/* 1. Il Brand (Logo + Titolo) non sfuma e rimane fisso */
+.brand {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 2. Keyframes per il fade in con traslazione leggera */
+@keyframes homeContentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 3. Nasconde gli elementi immediatamente per evitare qualsiasi flash visivo */
+.fade-in-content {
+  opacity: 0;
+  /* 'backwards' fa applicare subito opacity:0 dal frame 0, prima ancora del delay */
+  animation: homeContentFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  will-change: opacity, transform;
+}
+
+/* 4. Sequenza temporale per gli elementi (Stagger) */
+.sidebar-divider.fade-in-content { animation-delay: 0.15s; }
+.sidebar-nav.fade-in-content     { animation-delay: 0.25s; }
+.sidebar-bottom.fade-in-content  { animation-delay: 0.35s; }
+#welcome-side .fade-in-content   { animation-delay: 0.45s; }
+

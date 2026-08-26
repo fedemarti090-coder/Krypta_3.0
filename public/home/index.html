@@ -16,15 +16,17 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/option.css">
+    <link rel="stylesheet" href="card_swap/card_swap.css">
 </head>
 
 <body>
 
     <div class="main-container">
 
-        <!-- Sidebar Sinistra -->
+        <!-- Sidebar Sinistra (Struttura fissa) -->
         <aside class="sidebar">
             <div class="sidebar-top">
+                <!-- BRAND: Nessuna animazione per rimanere perfettamente fermo -->
                 <div class="brand">
                     <div class="brand-icon">
                         <i class="fa-solid fa-vault"></i>
@@ -35,10 +37,11 @@
                     </div>
                 </div>
 
-                <hr class="sidebar-divider">
+                <!-- Elementi interni che eseguono il fade-in -->
+                <hr class="sidebar-divider fade-in-content">
 
                 <!-- Menu Principale -->
-                <nav class="sidebar-nav">
+                <nav class="sidebar-nav fade-in-content">
                     <a href="#" class="nav-item active" id="home">
                         <img src="./asset/white/home.png" data-icon="home" alt="Home" class="nav-icon">
                         <span>Home</span>
@@ -51,23 +54,23 @@
                         <img src="./asset/white/add.png" data-icon="add" alt="Nuova" class="nav-icon">
                         <span>Aggiungi</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <img src="./asset/white/favorite.png" data-icon="favorite" alt="Preferiti" class="nav-icon">
-                        <span>Preferiti</span>
+                    <a href="#" class="nav-item" id="note">
+                        <img src="./asset/white/note.png" data-icon="note" alt="Note Protette" class="nav-icon">
+                        <span>Note protette</span>
                     </a>
                     <a href="#" class="nav-item" id="backup">
                         <img src="./asset/white/backup.png" data-icon="backup" alt="Backup" class="nav-icon">
                         <span>Backup</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <img src="./asset/white/trash.png" data-icon="trash" alt="Cestino" class="nav-icon">
-                        <span>Cestino</span>
+                    <a href="#" class="nav-item" id="protect">
+                        <img src="./asset/white/protect.png" data-icon="protect" alt="Sicurezza" class="nav-icon">
+                        <span>Sicurezza</span>
                     </a>
                 </nav>
             </div>
 
             <!-- Sezione Ancorata In Basso -->
-            <div class="sidebar-bottom">
+            <div class="sidebar-bottom fade-in-content">
                 <hr class="sidebar-divider">
                 <nav class="sidebar-nav">
                     <a href="#" class="nav-item" id="profilo">
@@ -82,9 +85,9 @@
             </div>
         </aside>
 
-        <!-- Area Workspace a Destra (Liquid Glass) -->
+        <!-- Area Workspace a Destra (Liquid Glass fissa, contenuto in fade-in) -->
         <section class="welcome-side" id="welcome-side">
-            <div class="container-option" id="option-box"></div>
+            <div class="container-option fade-in-content" id="option-box"></div>
         </section>
 
     </div>
@@ -96,7 +99,6 @@
     <script type="module" src="../login/point_grid/point_grid_setup.js"></script>
     <script type="module" src="js/script.js"></script>
     <script src="js/function.js"></script>
-
 
 </body>
 

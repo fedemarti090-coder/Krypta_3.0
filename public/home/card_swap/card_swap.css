@@ -1,0 +1,92 @@
+/* Container principale stile Banner React Bits - Tema Chiaro */
+.notes-intro-card {
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+    background: #ffffff; /* Sfondo del box bianco pulito */
+    border: 1px solid #d1d5db; /* Bordo grigio più definito */
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.notes-intro-text {
+    max-width: 45%;
+    z-index: 2;
+}
+
+.notes-intro-text h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #111827; /* Nero/Grigio scurissimo per il titolo */
+    margin: 0 0 12px 0;
+    line-height: 1.2;
+}
+
+.notes-intro-text p {
+    font-size: 1.05rem;
+    color: #4b5563; /* Grigio paragrafo più intenso e ben visibile */
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* Container GSAP CardSwap */
+.card-swap-container {
+    position: absolute;
+    bottom: -30px;
+    right: 20px;
+    width: 420px;
+    height: 340px;
+    perspective: 900px;
+    overflow: visible;
+}
+
+/* Fogli con un grigio più marcato e contrastato */
+.card-swap-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 340px;
+    height: 240px;
+    border-radius: 12px;
+    border: 1px solid #9ca3af; /* Bordo delle card ben definito */
+    background: #e5e7eb; /* Grigio carte più carico e visibile */
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    transform-style: preserve-3d;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Badge sulle card con accento rosso */
+.card-tag {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fee2e2; /* Sfondo rosso tenue */
+    border: 1px solid #fca5a5;
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: #b91c1c; /* Testo rosso scuro ben leggibile */
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Pallino indicatore rosso */
+.card-tag-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #dc2626; /* Rosso intenso */
+    border-radius: 50%;
+}
